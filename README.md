@@ -24,7 +24,7 @@ Each `.tar.gz` archive will contain the Python source code from the `py/` direct
 ## Usage
 
 ```sh
-./nftables_packager.sh <working_directory>
+./builder.sh <working_directory>
 ```
 
 ### Parameters
@@ -36,7 +36,7 @@ Each `.tar.gz` archive will contain the Python source code from the `py/` direct
 ### Example
 
 ```sh
-./nftables_packager.sh /tmp/nftables_build
+./builder.sh /tmp/nftables_build
 ```
 
 After running, you will find a `.tar.gz` package for each nftables tag in the `/tmp/nftables_build/dist/` directory.
@@ -50,4 +50,3 @@ If incorrect parameters are supplied, the script will display detailed usage ins
 - The resulting `.tar.gz` packages are simple archives of the `py/` source code.
 - They are **not** pip-installable Python packages unless a `setup.py` or `pyproject.toml` is manually added.
 - The script is designed for a clean, professional build process, adhering strictly to POSIX sh standards.
-
