@@ -41,6 +41,9 @@ build_package() {
     local VERSION="$(echo "${TAG}" | sed 's/^v//')"
     local PACKAGE_DIR="${TEMP_DIR}/package-${VERSION}"
     local PACKAGE_NAME="nftables-${VERSION}.tar.gz"
+    
+    echo "building nftables ${TAG}"
+    
     mkdir -p "${PACKAGE_DIR}/nftables"
     cp -r py/* "${PACKAGE_DIR}/nftables"
     tar -czf "${DIST_DIR}/${PACKAGE_NAME}" -C "${PACKAGE_DIR}" nftables
