@@ -54,7 +54,11 @@ build_packages() {
     local TAGS="$(git tag)"
     for TAG in ${TAGS}; do
         git checkout "${TAG}"
-        build_package "${TEMP_DIR}" "${DIST_DIR}" "${TAG}"
+        if [ ! -f "py/setup.py" ]; then
+            echo "version ${TAG} does not have setup.py file, skipping"
+        else
+            build_package "${TEMP_DIR}" "${DIST_DIR}" "${TAG}"
+        fi
     done
 }
 
