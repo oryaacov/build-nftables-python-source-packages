@@ -63,11 +63,20 @@ build_package() {
     local PACKAGE_DIR="${TEMP_DIR}/package-${VERSION}"
     local PACKAGE_NAME="nftables-${VERSION}.tar.gz"
     
-    echo "building nftables ${TAG} source package"
-    
+    echo "building nftables ${TAG} source package, version=${VERSION}"
+
     cd py
+
+    change_version_to_nf_version() {
+        local VERSION="$1"
+        sed -i "s/^\( *version=\)NFTABLES_VERSION/\1'${VERSION}'/" setup.py
+    }
+
+    change_version_to_nf_version "${VERSION}"
     python -m build
-    mv ./dist "${DIST_DIR}/nftables-${TAG}"
+    mv ./dist/* "${DIST_DIR}"
+
+    git reset --hard
     cd -
 }
 
