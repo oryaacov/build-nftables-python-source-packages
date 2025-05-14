@@ -70,6 +70,7 @@ build_package() {
     change_version_to_nf_version() {
         local VERSION="$1"
         sed -i "s/^\( *version=\)NFTABLES_VERSION/\1'${VERSION}'/" setup.py
+        sed -i "s/^\( *version =\).*/\1 ${VERSION}/" setup.cfg
     }
 
     change_version_to_nf_version "${VERSION}"
